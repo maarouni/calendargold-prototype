@@ -63,17 +63,31 @@ const HERO_LINES = {
   },
 };
 
-function PageBar({ title, icon, mode }) {
+// (<) and (>) step through the five sections in tile order, wrapping
+// around: One Big Calendar → Discount / Gift Certificates → Connections →
+// Employment Listings → Notifications → back to One Big Calendar.
+const SECTION_ORDER = [
+  { key: "calendar", href: "/", label: "One Big Calendar" },
+  { key: "discounts", href: "/discounts", label: "Discount / Gift Certificates" },
+  { key: "connections", href: "/connections", label: "Connections" },
+  { key: "employment", href: "/employment", label: "Employment Listings" },
+  { key: "notifications", href: "/notifications", label: "Notifications" },
+];
+
+function PageBar({ title, icon, mode, section }) {
+  const i = Math.max(0, SECTION_ORDER.findIndex((x) => x.key === section));
+  const prev = SECTION_ORDER[(i + SECTION_ORDER.length - 1) % SECTION_ORDER.length];
+  const next = SECTION_ORDER[(i + 1) % SECTION_ORDER.length];
   return (
     <div className={`page-bar page-bar-${mode}`}>
-      <button type="button" className="pb-nav" aria-label="Previous page" data-tip="Previous" onClick={() => window.history.back()}>
+      <a href={prev.href} className="pb-nav" aria-label={`Previous: ${prev.label}`} data-tip={prev.label}>
         <Glyph name="prev" size={14} strokeWidth={2.2} />
-      </button>
+      </a>
       <span className={`pb-icon ${mode === "edit" ? "pb-icon-dark" : ""}`}><Glyph name={icon} size={mode === "edit" ? 20 : 26} /></span>
       <h1>{title}</h1>
-      <button type="button" className="pb-nav" aria-label="Next page" data-tip="Next" onClick={() => window.history.forward()}>
+      <a href={next.href} className="pb-nav" aria-label={`Next: ${next.label}`} data-tip={next.label}>
         <Glyph name="next" size={14} strokeWidth={2.2} />
-      </button>
+      </a>
     </div>
   );
 }
@@ -105,7 +119,7 @@ export default function SiteHero({
 
   return (
     <div className="site-hero">
-      <PageBar title={title} icon={barIcon} mode={mode} />
+      <PageBar title={title} icon={barIcon} mode={mode} section={section} />
 
       <section className="hh-box hh-intro">
         <div className="hh-arrow">

@@ -2793,3 +2793,4 @@ input.sel-radio { --sel-radius: 50%; border-radius: 50% !important; }
 @media (max-width: 760px) {
   .filter-panel.fp-v2 { width: 100%; position: static; max-height: none; }
 }
+.pb-nav { text-decoration: none; }
