@@ -3,7 +3,9 @@
 import { useMemo, useState } from "react";
 import { REGION_GROUPS, CATEGORY_GROUPS } from "../lib/taxonomy";
 import { saveLocalEvent } from "../lib/events";
-import { Poster, HostAvatar, Icon, fmtTime, startTime, shortDate, isoOf, parseDate } from "../components/EventVisuals";
+import { HostAvatar, Icon, fmtTime, fmtDateRange, startTime, shortDate, isoOf, parseDate } from "../components/EventVisuals";
+import { Glyph } from "../components/Icons";
+import { cityCode } from "../lib/cityCodes";
 import { RATES } from "../lib/adRates";
 import SiteHero from "../components/SiteHero";
 
@@ -222,35 +224,35 @@ export default function SubmitEvent() {
       <SiteHero section="calendar" mode="edit" title="EDIT My Event Details" />
 
       {/* 1 — live preview, both formats (spec: Regular Format / Premier Format strip) */}
+      {/* 1 — preview in the One Big Calendar table style (Cesar's EDIT My
+          Event Details mock): click a row to choose Regular or Premier. */}
       <section className="ed-preview">
-        <div className="ed-section-title"><b>1</b> How it will look on One Big Calendar</div>
-        <div className={`ed-pv-row ${!f.premier ? "chosen" : ""}`}>
-          <span className="ed-pv-label">Regular</span>
-          <article className="tl-card regular">
-            <div className="tl-main">
-              <div className="tl-reg-1">
-                <span className="tl-time">{fmtTime(preview.time)}</span>
-                <span className="tl-title">{preview.title}</span>
-              </div>
-              <div className="tl-reg-2">
-                {shortDate(preview.date)} · {preview.type === "Online" ? "Online" : preview.city} · {preview.hostedBy} · {preview.cost}
-              </div>
-            </div>
-          </article>
-        </div>
-        <div className={`ed-pv-row ${f.premier ? "chosen" : ""}`}>
-          <span className="ed-pv-label">Premier</span>
-          <article className="tl-card premier">
-            <div className="tl-thumb"><Poster event={preview} label={false} /></div>
-            <div className="tl-main">
-              <div className="tl-kicker">Premier</div>
-              <span className="tl-title">{preview.title}</span>
-              <div className="tl-line"><Icon name="clock" />{shortDate(preview.date)} · {fmtTime(preview.time)}</div>
-              <div className="tl-line"><Icon name={preview.type === "Online" ? "globe" : "pin"} />{preview.type === "Online" ? "Online" : `${preview.city}${preview.region ? `, ${preview.region}` : ""}`}</div>
-              <div className="tl-line tl-host"><HostAvatar name={preview.hostedBy} size={18} /><b>{preview.hostedBy}</b><span className="tl-sep">·</span><Icon name="tag" />{preview.cost}</div>
-            </div>
-          </article>
-        </div>
+        <div className="ed-section-title"><b>1</b> How it will look on One Big Calendar <em className="pv-hint">Click one to choose</em></div>
+        {[false, true].map((prem) => (
+          <button key={String(prem)} type="button" className={`pv-pick ${f.premier === prem ? "chosen" : ""}`}
+            onClick={() => set("premier", prem)} aria-pressed={f.premier === prem}>
+            <span className="pv-label">{prem ? "Premier Listing" : "Regular Listing"}<em>{prem ? "(Advertisement)" : "(Free)"}</em></span>
+            <span className={`obc-row ${prem ? "premier" : "regular"}`}>
+              <span className="obc-cell obc-when">
+                <span>{fmtDateRange(preview.date, preview.endDate)}</span>
+                <span>{fmtTime(preview.time)}</span>
+              </span>
+              <span className="obc-cell obc-main">
+                <span className="obc-title">{preview.title}</span>
+                {prem ? (
+                  <>
+                    <span>{preview.type === "Online" ? "Online" : `${cityCode(preview)}${preview.region ? `, ${preview.region}` : ""}`}</span>
+                    <span>Hosted by <b>{preview.hostedBy}</b></span>
+                    <span>{preview.cost}</span>
+                  </>
+                ) : (
+                  <span>{preview.type === "Online" ? "Online" : cityCode(preview)}, Hosted by {preview.hostedBy}</span>
+                )}
+              </span>
+              {prem && <span className="obc-cell obc-img"><Glyph name="gallery" size={30} strokeWidth={1.4} /><small>Icon, Image or Logo</small></span>}
+            </span>
+          </button>
+        ))}
       </section>
 
       <div className="ed-grid">

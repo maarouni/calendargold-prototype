@@ -1,3 +1,4 @@
+import { Glyph } from "./Icons";
 // Small presentational pieces shared by the home page: generated posters,
 // host avatars, and date/time formatting. Everything is drawn from the
 // Every Circle palette in Cesar's Figma, so no stock photos are needed.
@@ -107,11 +108,11 @@ export function initialsOf(name) {
 }
 
 export function HostAvatar({ name, size = 22 }) {
-  const color = PALETTE[hash(name) % 4];
+  // Oct 19: neutral gray initials instead of colored circles.
   return (
     <span
-      className="host-avatar"
-      style={{ width: size, height: size, background: color, fontSize: size * 0.42 }}
+      className="host-avatar host-avatar-plain"
+      style={{ width: size, height: size, fontSize: size * 0.42 }}
       aria-hidden="true"
     >
       {initialsOf(name)}
@@ -119,37 +120,16 @@ export function HostAvatar({ name, size = 22 }) {
   );
 }
 
-// A generated poster: overlapping circles on a palette background, seeded by
-// the event id so each event always gets the same artwork.
-export function Poster({ event, className = "", label = true }) {
-  const h = hash(event.id + event.title);
-  const bg = PALETTE[h % 4];
-  const others = PALETTE.filter((c) => c !== bg && c !== "#1a1a1a");
-  const c1 = others[h % others.length];
-  const c2 = others[(h >> 3) % others.length];
-  const x1 = 30 + (h % 140);
-  const y1 = 20 + ((h >> 5) % 60);
-  const r1 = 55 + ((h >> 7) % 40);
-  const x2 = 160 + ((h >> 9) % 110);
-  const y2 = 90 + ((h >> 11) % 50);
-  const r2 = 30 + ((h >> 13) % 35);
-  const ink = bg === "#ff9500" ? "#1a1a1a" : "#ffffff";
-  // Most specific category first ("Networking" is on nearly everything).
-  const cats = [...(event.categories || []), event.category].filter(Boolean);
-  const usable = cats.filter((c) => !PERSONAL.has(c));
-  const pick = usable.find((c) => c !== "Networking") || usable[0] || "Event";
-  const word = String(pick).split(",")[0].trim();
-  const size = word.length > 13 ? 22 : word.length > 9 ? 26 : 30;
+// Oct 19: no more generated purple/orange circle art. Until real uploads
+// exist, an event's image is a plain box with the legend image for its kind
+// (expo, dinner, workshop) — "Icon, Image or Logo" in Cesar's mocks.
+export function Poster({ event, className = "" }) {
+  const cats = [...(event.categories || []), event.category].join(" ").toLowerCase();
+  const kind = cats.includes("dinner") ? "dinner" : cats.includes("workshop") || cats.includes("seminar") ? "workshop" : "expo";
   return (
-    <svg className={`poster ${className}`} viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <rect width="320" height="180" fill={bg} />
-      <circle cx={x1} cy={y1} r={r1} fill={c1} opacity="0.9" />
-      <circle cx={x2} cy={y2} r={r2} fill={c2} opacity="0.85" />
-      <circle cx={x2 + r2 * 0.9} cy={y2 - r2 * 0.6} r={r2 * 0.35} fill="#fff" opacity="0.9" />
-      {label && <text x="18" y="160" fill={ink} fontFamily="Alata, Lexend, sans-serif" fontSize={size} letterSpacing="-1">
-        {word}
-      </text>}
-    </svg>
+    <span className={`poster poster-plain ${className}`} aria-hidden="true">
+      <Glyph name={kind} size={40} strokeWidth={1.3} />
+    </span>
   );
 }
 

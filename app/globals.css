@@ -2794,3 +2794,25 @@ input.sel-radio { --sel-radius: 50%; border-radius: 50% !important; }
   .filter-panel.fp-v2 { width: 100%; position: static; max-height: none; }
 }
 .pb-nav { text-decoration: none; }
+
+/* Oct 19: neutral image placeholder instead of the generated circle art */
+.poster-plain { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 64px; background: #f2f2f2; border: 1px solid #d9d9d9; border-radius: 8px; color: var(--ink); }
+.host-avatar-plain { background: #e6e6e6 !important; color: var(--ink) !important; border: 1px solid #cfcfcf; }
+
+/* EDIT My Event Details preview: click a row to choose Regular / Premier */
+.pv-hint { font-size: 12px; font-weight: 400; margin-left: 8px; opacity: .7; }
+.pv-pick { display: grid; grid-template-columns: 140px minmax(0, 1fr); align-items: stretch; gap: 10px; width: 100%; margin: 6px 0 0; padding: 6px; background: #fff; border: 1.5px solid transparent; border-radius: 10px; font: inherit; text-align: left; cursor: pointer; }
+.pv-pick:hover { border-color: var(--gold-light); }
+.pv-pick.chosen { border-color: var(--cg-yellow-line); background: #fffbe0; }
+.pv-label { display: flex; flex-direction: column; justify-content: center; font-size: 13px; font-style: italic; text-align: right; color: var(--ink); }
+.pv-label em { font-size: 12px; }
+.pv-pick .obc-row { border: 1px solid var(--cg-box-line); border-radius: 4px; background: #fff; grid-template-columns: 150px minmax(0, 1fr); }
+.pv-pick .obc-row.premier { grid-template-columns: 150px minmax(0, 1fr) 96px; }
+.pv-pick .obc-img { justify-content: center; text-align: center; gap: 2px; }
+.pv-pick .obc-img small { font-size: 10px; color: var(--cg-blue); }
+@media (max-width: 640px) {
+  .pv-pick { grid-template-columns: 1fr; }
+  .pv-label { flex-direction: row; gap: 6px; text-align: left; }
+  .pv-pick .obc-row, .pv-pick .obc-row.premier { grid-template-columns: 100px minmax(0, 1fr); }
+  .pv-pick .obc-img { display: none; }
+}
