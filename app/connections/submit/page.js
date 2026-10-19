@@ -3,7 +3,6 @@
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import PageTemplate from "../../components/PageTemplate";
-import OrgSubNav from "../../components/OrgSubNav";
 import PremierCalculator from "../../components/PremierCalculator";
 import {
   REGION_GROUPS, CATEGORY_GROUPS, INDUSTRIES, ORG_FORMATS, MEMBER_LIST_VISIBILITY, ROSTER_GROUPS,
@@ -66,7 +65,7 @@ function EditOrgInner() {
       posted: todayIso(),
       premierCost: f.premier && paid ? paid.total : null,
     });
-    router.push(`/organizations/${id}`);
+    router.push(`/connections/${id}`);
   }
 
   const F = ({ k, label, req, wide, type = "text", ...rest }) => (
@@ -85,14 +84,14 @@ function EditOrgInner() {
 
   return (
     <PageTemplate
-      section="organizations"
+      section="connections"
       mode="edit"
       narrow
-      title="EDIT Organization Details"
+      title="EDIT My Connections Details"
       subtitle={loadedFrom ? `Editing: ${loadedFrom}` : "Add an Organization"}
-      subnav={<OrgSubNav active="edit" orgId={editId} />}
+      activeAction="edit"
       intro="What is your cost of acquisition of a new member? Manage and promote your organization here."
-      actions={<a href="/organizations" className="tpl-action">View organizations</a>}
+      actions={<a href="/connections" className="tpl-action">View organizations</a>}
     >
       <form className="job-form" onSubmit={submit}>
         {F({ k: "name", label: "Organization Name", req: true, wide: true })}
@@ -191,7 +190,7 @@ function EditOrgInner() {
         {f.premier && <PremierCalculator onConfirm={setPaid} />}
 
         <button type="submit" className="btn-primary" style={{ marginTop: 10 }}>{editId ? "Save Organization" : "Add Organization"}</button>
-        <p className="proto-note">Until the shared database is set up, organizations you add show only on this computer. After saving, use <b>Send my organizations to Masoud</b> on the Organization Digest page to make them permanent for everyone.</p>
+        <p className="proto-note">Until the shared database is set up, organizations you add show only on this computer. After saving, use <b>Send my organizations to Masoud</b> on the Connections page to make them permanent for everyone.</p>
       </form>
     </PageTemplate>
   );

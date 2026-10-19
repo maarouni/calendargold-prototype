@@ -8,6 +8,7 @@ import { googleCalendarUrl, eventCategories } from "../../lib/taxonomy";
 import { fetchEvents } from "../../lib/events";
 import { fmtWhen, dateFormatOf } from "../../components/EventVisuals";
 import { Glyph, IconButton } from "../../components/Icons";
+import SiteHero from "../../components/SiteHero";
 
 const STORAGE_KEY = "mc_my_calendar_v1";
 
@@ -72,6 +73,7 @@ export default function EventDetail() {
 
   return (
     <div className="page event-detail">
+      <SiteHero section="calendar" title="Event Details" icon="viewMode" activeAction="details" />
       <div className={`event-cover cover-${slugify(event.category)}`}>
         {event.premier && <span className="cover-premier">★ PREMIER EVENT</span>}
         <span className="cover-icon">{categoryIcon(event.category)}</span>

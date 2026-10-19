@@ -31,7 +31,7 @@ export function AdPage({ title, children }) {
     <PageTemplate
       section={null}
       title={title}
-      subtitle="Earn with Advertising · Innovative, Results-Based Marketing"
+      icon="megaphone"
       legend={false}
       actions={<a href="/info#contact" className="tpl-action">Contact us</a>}
       subnav={<AdNav />}

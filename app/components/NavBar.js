@@ -54,10 +54,23 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="navbar-inner">
-        <a href="/" className="brand">
-          <span className="brand-mark" aria-hidden="true"><i /><i /></span>
-          <span className="brand-word">calendar<b>Gold</b></span>
-          <span className="brand-more">&amp; much more</span>
+        {/* Oct 19 Figma: new logo — calendar mark, "calendarGold.com",
+            "and much more ..." underneath; icons on the same line, the whole
+            header aligned with the page body. */}
+        <a href="/" className="brand brand-v2" aria-label="calendarGold.com and much more — Home">
+          <svg className="brand-cal" width="38" height="38" viewBox="0 0 40 40" aria-hidden="true">
+            <rect x="3" y="7" width="34" height="30" rx="5" fill="#fff" stroke="#c9922f" strokeWidth="2.4" />
+            <rect x="3" y="7" width="34" height="8" rx="4" fill="#e8a93a" />
+            <path d="M12 3.5v7M28 3.5v7" stroke="#8a5a12" strokeWidth="2.6" strokeLinecap="round" />
+            {[0, 1, 2, 3].map((c) => [0, 1, 2].map((r) => (
+              <rect key={`${c}-${r}`} x={7.5 + c * 7} y={18.5 + r * 5.6} width="4.6" height="3.6" rx="0.8"
+                fill={c === 2 && r === 1 ? "#e8a93a" : "#d8d8d8"} />
+            )))}
+          </svg>
+          <span className="brand-text">
+            <span className="brand-word">calendar<b>Gold</b><small>.com</small></span>
+            <span className="brand-more">and much more ...</span>
+          </span>
         </a>
 
         <div className="nav-links nav-icon-groups">

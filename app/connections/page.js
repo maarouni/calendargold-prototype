@@ -2,7 +2,6 @@
 
 import { Suspense, useEffect, useMemo, useState } from "react";
 import PageTemplate from "../components/PageTemplate";
-import OrgSubNav from "../components/OrgSubNav";
 import OrgFilterPanel from "../components/OrgFilterPanel";
 import { NextStep } from "../components/Steps";
 import { ResultsHead, ListingTable, Pager, shortYmd } from "../components/ListingTable";
@@ -61,12 +60,12 @@ function OrgsInner() {
   return (
     <>
       <PageTemplate
-        section="organizations"
-        title="Organization Digest"
+        section="connections"
+        title="Connections"
         subtitle="Public"
         legend={false}
-        subnav={<OrgSubNav active="digest" />}
-        actions={<a href="/organizations/submit" className="tpl-action" data-tip="Add New organization">+ Add an Organization</a>}
+        activeAction="digest"
+        actions={<a href="/connections/submit" className="tpl-action" data-tip="Add New organization">+ Add a Connection</a>}
         intro={<><strong>Get Connected!</strong> Select filters to curate organizations, and assign <strong>My Membership Status</strong> for each org. What is your cost of acquisition of a new member? Manage and promote your organization here!</>}
       />
 
@@ -78,7 +77,7 @@ function OrgsInner() {
           )}
 
           <div className="timeline-col" id="results">
-            <ResultsHead title="My Organizations Digest" q={qRaw} setQ={setQRaw}
+            <ResultsHead title="My Connections Digest" q={qRaw} setQ={setQRaw}
               showFilters={showFilters} onShowFilters={() => setShowFilters(true)} />
 
             <FillInHere>
@@ -97,7 +96,7 @@ function OrgsInner() {
 
             <ListingTable rows={pageItems.map((o) => ({
               id: o.id,
-              href: `/organizations/${o.id}`,
+              href: `/connections/${o.id}`,
               left: [`Revised ${shortYmd(o.posted)}`, o.premier ? fmtMembers(o.members) : null],
               title: o.name,
               lines: o.premier
@@ -112,8 +111,8 @@ function OrgsInner() {
 
             <Pager page={safePage} totalPages={totalPages} onGo={(p) => setPage(Math.min(Math.max(1, p), totalPages))} />
 
-            <NextStep noun="Organization" digest="My Organizations Digest" digestHref="/organizations"
-              detailsHref={firstSel ? `/organizations/${firstSel.id}` : "/organizations"} />
+            <NextStep noun="Connection" digest="My Connections Digest" digestHref="/connections"
+              detailsHref={firstSel ? `/connections/${firstSel.id}` : "/connections"} />
           </div>
         </div>
       </div>

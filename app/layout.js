@@ -1,5 +1,6 @@
 import "./globals.css";
 import NavBar from "./components/NavBar";
+import SiteFooter from "./components/SiteFooter";
 
 export const metadata = {
   title: "calendarGold & much more (Prototype)",
@@ -22,9 +23,7 @@ export default function RootLayout({ children }) {
 
         {children}
 
-        <footer className="site-footer site-footer-min">
-          <span>© 2026 calendar<b>Gold</b></span>
-        </footer>
+        <SiteFooter />
       </body>
     </html>
   );

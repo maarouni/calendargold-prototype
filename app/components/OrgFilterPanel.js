@@ -6,7 +6,7 @@ import {
   CATEGORY_GROUPS, INDUSTRIES, REGION_GROUPS, EMPTY_ORG_FILTERS, countOrgsFor,
 } from "../lib/organizations";
 
-// Organizations filters — same shared structure as One Big Calendar.
+// Connections filters — same shared structure as One Big Calendar.
 export default function OrgFilterPanel({ items, filters, setFilters, ctx, onHide, onDisplay }) {
   const count = (key, v) => countOrgsFor(items, filters, { [key]: key === "posted" ? v : [v] }, ctx);
   const kit = { filters, setFilters, count };
@@ -23,7 +23,7 @@ export default function OrgFilterPanel({ items, filters, setFilters, ctx, onHide
       <Box title="# Members"><CheckList field="members" options={MEMBER_OPTIONS} {...kit} /></Box>
       <Box title="Annual Dues"><CheckList field="dues" options={DUES_OPTIONS} {...kit} /></Box>
       <Box title="My Membership Status"><CheckList field="status" options={MEMBERSHIP_STATUSES} {...kit} /></Box>
-      <DigestBox digest="My Organizations Digest" />
+      <DigestBox digest="My Connections Digest" />
       <GroupedBox title="Categories" field="categories" groups={CATEGORY_GROUPS} {...kit} />
       <Box title="Industries" defaultOpen={filters.industry.length > 0}>
         <CheckList field="industry" options={INDUSTRIES} {...kit} />

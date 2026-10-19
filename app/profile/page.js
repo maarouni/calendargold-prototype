@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { fetchEvents } from "../lib/events";
+import SiteHero from "../components/SiteHero";
 
 const STORAGE_KEY = "mc_my_calendar_v1";
 
@@ -23,6 +24,7 @@ export default function Profile() {
 
   return (
     <div className="page profile-page">
+      <SiteHero section={null} title="Settings" icon="settings" />
       <div className="hint">
         Prototype: this profile is static placeholder data, styled after how a
         real account page would look — no login/auth is wired up yet.

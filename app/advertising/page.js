@@ -19,7 +19,7 @@ export default function AdvertisingPage() {
         <p>
           Calculate and manage your advertising cost based on <b># weeks</b> and <b># views OR # clicks</b>.{" "}
           <i>Full transparency:</i> the system calculates the approximate number of times your listing may be displayed,
-          based on every user&rsquo;s matching filters in Calendar, Discount / Gift Certificates, Organizations,
+          based on every user&rsquo;s matching filters in Calendar, Discount / Gift Certificates, Connections,
           Employment and Notifications.
         </p>
         <p><b>NOTE:</b> <i>This is NOT the typical pay-and-pray, shotgun, push-marketing approach!</i></p>

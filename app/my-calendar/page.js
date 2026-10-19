@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ATTENDANCE_STATUSES, googleCalendarUrl } from "../lib/taxonomy";
 import { fetchEvents } from "../lib/events";
 import { Poster, HostAvatar, Icon, fmtTime, startTime, dayLabel, isoOf } from "../components/EventVisuals";
+import SiteHero from "../components/SiteHero";
 
 // Cesar's spec "My Calendar Digest" (rev 260924): the events you picked from
 // One Big Calendar, each with an Attendance Status, filterable by status.
@@ -145,6 +146,7 @@ export default function MyCalendar() {
 
   return (
     <div className="page mc-page">
+      <SiteHero section="calendar" title="My Calendar Digest" icon="calendar" activeAction="digest" />
       <header className="mc-head">
         <div>
           <h1>My Calendar Digest</h1>

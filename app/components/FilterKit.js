@@ -28,7 +28,7 @@ export function FilterShell({ onHide, onClear, onDisplay, children }) {
         <span className="step-badge" aria-hidden="true">1</span>
         <em>Select all that apply</em>
         <button type="button" className="fp-clear-x" data-tip="Clear All" aria-label="Clear all filters" onClick={onClear}>
-          <Glyph name="clearAll" size={18} />
+          <Glyph name="xMark" size={18} strokeWidth={3} />
         </button>
       </div>
       {children}
@@ -46,8 +46,7 @@ export function Box({ title, hint, icon, defaultOpen = true, disabled, note, chi
     <section className={`fp-box ${disabled ? "fp-disabled" : ""}`}>
       <div className="fp-box-head">
         <span className="fp-box-title">
-          {icon}
-          <b>{title}</b>
+          <b>{icon}{title}</b>
           {hint && <em>{hint}</em>}
         </span>
         <CollapseArrow open={open} onClick={() => setOpen((o) => !o)} label={title} />

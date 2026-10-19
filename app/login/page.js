@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import SiteHero from "../components/SiteHero";
 
 const USER_KEY = "mc_user_v1";
 
@@ -60,6 +61,7 @@ export default function Login() {
 
   return (
     <div className="page">
+      <SiteHero section={null} title="Registration – Sign Up / Log In" icon="login" />
       <div className="auth-wrap">
         <div className="auth-card">
           <h1 className="auth-title">

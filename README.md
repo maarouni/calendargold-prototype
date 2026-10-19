@@ -2,7 +2,7 @@
 
 **Live:** https://calendargold.vercel.app · **All pages:** https://calendargold.vercel.app/pages
 
-calendarGold is a Bay Area events, discounts, organizations, employment and notifications platform —
+calendarGold is a Bay Area events, discounts, connections, employment and notifications platform —
 an innovative, results-based marketing and revenue-sharing system (*Connect • Promote • Earn*).
 This repository is the working prototype used to review page designs and flows before
 the production build.
@@ -16,7 +16,7 @@ the production build.
 | **Create Event** | `/submit`: Regular or Premier listing with advertising budget |
 | **My Calendar Digest** | `/my-calendar`: selected events, attendance status, Google Calendar |
 | **Discount / Gift Certificates** | `/discounts`, `/discounts/[id]`, `/discounts/submit` |
-| **Organizations** | `/organizations` (digest: # Members, Annual Dues, My Membership Status filters), `/organizations/[id]`, `/organizations/[id]/members`, `/organizations/submit` |
+| **Connections** (was Organizations) | `/connections` (digest: # Members, Annual Dues, My Membership Status filters), `/connections/[id]`, `/connections/[id]/members`, `/connections/submit` |
 | **Employment Listings** | `/employment`, `/employment/submit` |
 | **Notifications** | `/notifications` (Browse, My Notifications, Create Business Notification) |
 | **Earn with Advertising** | `/advertising` hub, `/advertising/calculate` (views vs. clicks side by side, D = A × B × C), rate pages `/advertising/listings`, `/expos`, `/dinners`, `/workshops`. All rates live in `app/lib/adRates.js` |

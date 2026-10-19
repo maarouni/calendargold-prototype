@@ -5,6 +5,7 @@ import { REGION_GROUPS, CATEGORY_GROUPS } from "../lib/taxonomy";
 import { saveLocalEvent } from "../lib/events";
 import { Poster, HostAvatar, Icon, fmtTime, startTime, shortDate, isoOf, parseDate } from "../components/EventVisuals";
 import { RATES } from "../lib/adRates";
+import SiteHero from "../components/SiteHero";
 
 // Cesar's spec "EDIT My Events" (rev 260924): preview strip on top, filter
 // attributes on the left, the event form on the right, and — for Premier
@@ -216,18 +217,9 @@ export default function SubmitEvent() {
   return (
     <>
     <form className="page ed-page" onSubmit={submit} noValidate>
-      <header className="ed-head">
-        <div>
-          <h1>Add an Event</h1>
-          <p>Free Regular listing, or Premier for top placement with a budget you control.</p>
-        </div>
-        <div className="ed-steps" aria-hidden="true">
-          <span><b>1</b>Preview</span>
-          <span><b>2</b>Attributes</span>
-          <span><b>3</b>Details</span>
-          {f.premier && <span><b>4</b>Budget</span>}
-        </div>
-      </header>
+      {/* Oct 19: shared EDIT header; "Add an Event" title and the 1-2-3 step
+          strip removed (Cesar: too much, not necessary). */}
+      <SiteHero section="calendar" mode="edit" title="EDIT My Event Details" />
 
       {/* 1 — live preview, both formats (spec: Regular Format / Premier Format strip) */}
       <section className="ed-preview">

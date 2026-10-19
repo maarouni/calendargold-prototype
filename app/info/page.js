@@ -2,6 +2,7 @@
 
 import FillInHere from "../components/FillInHere";
 import { Glyph, LEGEND } from "../components/Icons";
+import SiteHero from "../components/SiteHero";
 
 const INDEX = [
   ["about", "About Us"], ["contact", "Contact Us"], ["legend", "Legend Icons"],
@@ -11,10 +12,10 @@ const INDEX = [
 // Site index from Cesar's Legend Icons page (Public vs Personal pages).
 const PUBLIC_PAGES = [
   ["/", "HOME · One Big Calendar"], ["/notifications", "Notifications"], ["/employment", "Employment"],
-  ["/discounts", "Discount / Gift Certificates"], ["/organizations", "Organizations"], ["/info", "Info"], ["/login", "Registration – Sign Up / Log In"],
+  ["/discounts", "Discount / Gift Certificates"], ["/connections", "Connections"], ["/info", "Info"], ["/login", "Registration – Sign Up / Log In"],
 ];
 const PERSONAL_PAGES = [
-  ["/my-calendar", "My Calendar Digest"], ["/submit", "EDIT My Events"], ["/employment/submit", "EDIT My Employment Listings"], ["/discounts/submit", "EDIT My Discount / Gift Certificates"], ["/organizations/submit", "EDIT My Organization Details"],
+  ["/my-calendar", "My Calendar Digest"], ["/submit", "EDIT My Events"], ["/employment/submit", "EDIT My Employment Listings"], ["/discounts/submit", "EDIT My Discount / Gift Certificates"], ["/connections/submit", "EDIT My Connections Details"],
   ["/dashboards", "My Dashboards"], ["/profile", "Settings"],
 ];
 
@@ -26,6 +27,7 @@ const PERSONAL_PAGES = [
 export default function InfoPage() {
   return (
     <div className="page info-page">
+      <SiteHero section={null} title="Info" icon="info" />
       <header className="mc-head">
         <div>
           <h1>Info</h1>

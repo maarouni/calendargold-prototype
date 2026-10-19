@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { slugify } from "../../lib/slug";
 import { fetchEvents } from "../../lib/events";
+import SiteHero from "../../components/SiteHero";
 
 export default function OrganizerPage() {
   const { name } = useParams();
@@ -34,6 +35,7 @@ export default function OrganizerPage() {
 
   return (
     <div className="page">
+      <SiteHero section="connections" title="Connections Details" icon="connections" activeAction="details" />
       <div className="hint">
         Prototype: this organizer page is generated from the events they
         host — there's no real organizer account, verification, or

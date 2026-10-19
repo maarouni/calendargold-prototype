@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import QRCode from "qrcode";
 import PageTemplate from "../../components/PageTemplate";
-import OrgSubNav from "../../components/OrgSubNav";
 import OrgStatusPicker from "../../components/OrgStatusPicker";
 import { IconButton } from "../../components/Icons";
 import { HostAvatar, shortDate } from "../../components/EventVisuals";
@@ -27,11 +26,11 @@ export default function OrgDetail() {
     setStatusState(readMembership()[id] || "");
     try { setSaved(!!JSON.parse(localStorage.getItem(SEL_KEY) || "{}")[id]); } catch {}
     try { setLoggedIn(!!localStorage.getItem("mc_user_v1")); } catch {}
-    QRCode.toDataURL(`${window.location.origin}/organizations/${id}`, { width: 240, margin: 1 }).then(setQr).catch(() => {});
+    QRCode.toDataURL(`${window.location.origin}/connections/${id}`, { width: 240, margin: 1 }).then(setQr).catch(() => {});
   }, [id]);
 
   if (o === undefined) return <div className="tpl"><p>Loading…</p></div>;
-  if (o === null) return <div className="tpl"><div className="empty-state">Couldn&rsquo;t find that organization. <a href="/organizations">Back to Organizations</a></div></div>;
+  if (o === null) return <div className="tpl"><div className="empty-state">Couldn&rsquo;t find that organization. <a href="/connections">Back to Connections</a></div></div>;
 
   function toggle() {
     try {
@@ -47,12 +46,12 @@ export default function OrgDetail() {
 
   return (
     <PageTemplate
-      section="organizations"
-      title="Organization Details"
+      section="connections"
+      title="Connections Details"
       subtitle="Get Connected! Learn about this organization and set your membership status."
       legend={false}
-      subnav={<OrgSubNav active="details" orgId={o.id} />}
-      actions={<a href="/organizations" className="tpl-action">← All organizations</a>}
+      activeAction="details"
+      actions={<a href="/connections" className="tpl-action">← All organizations</a>}
     >
       <div className="disc-detail org-detail">
         <div className="disc-detail-main">
@@ -104,7 +103,7 @@ export default function OrgDetail() {
 
           <h4 className="section-label">Members</h4>
           {canSeeRoster ? (
-            <p><a href={`/organizations/${o.id}/members`}>View Leadership, Staff and Members →</a> <span className="nt-hint">({(o.roster || []).length} listed)</span></p>
+            <p><a href={`/connections/${o.id}/members`}>View Leadership, Staff and Members →</a> <span className="nt-hint">({(o.roster || []).length} listed)</span></p>
           ) : (
             <p className="nt-hint">
               {o.memberList === "members" ? "Member list is visible to members only — set your status to Member to view it." :
@@ -122,7 +121,7 @@ export default function OrgDetail() {
             {qr ? <img src={qr} alt={`QR code for ${o.name}`} /> : <div style={{ padding: 40 }}>Generating QR code…</div>}
             <div className="qr-card-label"><b>Organization QR Code</b> — share this page at events.</div>
           </div>
-          <a className="btn-ghost btn-sm" href={`/organizations/submit?id=${o.id}`}>EDIT Organization Details</a>
+          <a className="btn-ghost btn-sm" href={`/connections/submit?id=${o.id}`}>EDIT My Connections Details</a>
         </aside>
       </div>
     </PageTemplate>

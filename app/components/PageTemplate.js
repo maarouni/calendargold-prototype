@@ -1,13 +1,11 @@
 "use client";
 
-import IconNav from "./IconNav";
+import SiteHero from "./SiteHero";
 
-// Cesar's page "template" (Oct 10 review): one layout that every section page
-// copies — 4-section icon row, a title bar, a 2-line description, then the
-// content. The title bar follows his color code:
-//   yellow = page under construction
-//   gray   = edit page / editable inputs
-//   white  = output (view) page
+// Every section page uses this template (Cesar, Oct 19: "most pages are
+// templates"). The top is the shared SiteHero — yellow title bar (gray on
+// EDIT pages), hero box, section tiles, the section's action row and
+// "Connect with me !" — then a white intro box and the page content.
 // Usage: <PageTemplate section="employment" mode="edit" title="..." intro="...">
 export default function PageTemplate({
   section,
@@ -19,37 +17,35 @@ export default function PageTemplate({
   actions,
   children,
   narrow = false,
-  legend = true,
-  subnav = null, // optional second icon row under the section icons
+  subnav = null,   // replaces the section action row (e.g. advertising pages)
+  activeAction,
+  icon,
+  legend,          // kept for compatibility; the color legend is no longer shown
 }) {
-  const bar = status === "construction" ? "construction" : mode;
   return (
-    <div className={`tpl tpl-mode-${mode} ${narrow ? "tpl-narrow" : ""} ${legend ? "" : "tpl-no-legend"}`}>
-      <IconNav active={section} mode={mode} />
-      {subnav}
+    <div className={`tpl tpl-mode-${mode} ${narrow ? "tpl-narrow" : ""}`}>
+      <SiteHero
+        section={section}
+        mode={mode}
+        title={<>{title}{subtitle && <em className="pb-sub">{subtitle}</em>}</>}
+        icon={icon}
+        activeAction={activeAction}
+        secondRow={subnav}
+      />
 
-      <header className={`tpl-title tpl-${bar}`}>
-        <div>
-          <h1>{title}</h1>
-          {subtitle && <span className="tpl-subtitle">{subtitle}</span>}
+      {(intro || actions || status === "construction") && (
+        <div className="tpl-intro">
+          <div>{intro}</div>
+          {(actions || status === "construction") && (
+            <div className="tpl-intro-right">
+              {status === "construction" && <span className="tpl-flag">Under construction</span>}
+              {actions}
+            </div>
+          )}
         </div>
-        <div className="tpl-title-right">
-          {status === "construction" && <span className="tpl-flag">Under construction</span>}
-          {mode === "edit" && status !== "construction" && <span className="tpl-flag tpl-flag-edit">Edit</span>}
-          {actions}
-        </div>
-      </header>
-
-      {intro && <p className="tpl-intro">{intro}</p>}
-
+      )}
 
       {children && <div className={`tpl-body ${mode === "edit" ? "tpl-body-edit" : ""}`}>{children}</div>}
-
-      {legend && <div className="tpl-legend" aria-label="Color legend">
-        <span><i className="lg-construction" /> Under construction</span>
-        <span><i className="lg-edit" /> Edit / input</span>
-        <span><i className="lg-output" /> Output</span>
-      </div>}
     </div>
   );
 }

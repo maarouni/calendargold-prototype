@@ -1,4 +1,5 @@
 import FillInHere from "../components/FillInHere";
+import SiteHero from "../components/SiteHero";
 
 // Cesar's wireframe (Figma, Oct 9 rev): "calendarGold.com Dashboards" — the
 // signed-in account hub: your referral code/QR, your digests, your listings,
@@ -8,6 +9,7 @@ import FillInHere from "../components/FillInHere";
 export default function DashboardsPage() {
   return (
     <div className="page dash-page">
+      <SiteHero section={null} title="My Dashboards" icon="dashboards" />
       <header className="mc-head">
         <div>
           <h1>Dashboards</h1>
@@ -54,7 +56,7 @@ export default function DashboardsPage() {
             <a href="/my-calendar">My Calendar Digest →</a>
             <a href="/employment">My Employment Digest →</a>
             <a href="/discounts">My Certificates Digest →</a>
-            <a href="/organizations">My Organizations Digest →</a>
+            <a href="/connections">My Connections Digest →</a>
             <a href="/notifications">My Notifications →</a>
           </div>
         </section>

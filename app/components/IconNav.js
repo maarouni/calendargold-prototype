@@ -1,7 +1,7 @@
 "use client";
 
-// Shared section icon row from Cesar's wireframes (Oct 14 adds Organizations):
-// One Big Calendar · Discount / Gift Certificates · Organizations ·
+// Shared section icon row from Cesar's wireframes (Oct 19: Organizations renamed Connections):
+// One Big Calendar · Discount / Gift Certificates · Connections ·
 // Employment Listings · Notifications
 
 const ITEMS = [
@@ -33,14 +33,14 @@ const ITEMS = [
     ),
   },
   {
-    key: "organizations",
-    href: "/organizations",
-    label: "Organizations",
-    tip: "Manage and promote your organization",
+    key: "connections",
+    href: "/connections",
+    label: "Connections",
+    tip: "Individuals, businesses, organizations and groups",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round">
-        <path d="M12 3 3 20h18L12 3Z" />
-        <path d="M7.6 12h8.8M5.4 16h13.2" />
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18" />
       </svg>
     ),
   },

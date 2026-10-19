@@ -39,6 +39,7 @@ const P = {
   cart: <><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 7H6" /></>,
   cartAdd: <><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 7H6" /><path d="M14 8.5v5M11.5 11h5" /></>,
   delete: <><path d="M3 6h18" /><path d="M8 6V4h8v2" /><path d="M6 6l1 14h10l1-14" /><path d="M10 11v6M14 11v6" /></>,
+  xMark: <path d="M6 6l12 12M18 6 6 18" />,
   clearAll: <><circle cx="12" cy="12" r="9" /><path d="M15 9l-6 6M9 9l6 6" /></>,
   ticket: <><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4V8Z" /><path d="M13 6v12" strokeDasharray="2 2" /></>,
   map: <><path d="M9 4l-6 2v14l6-2 6 2 6-2V4l-6 2-6-2Z" /><path d="M9 4v14M15 6v14" /></>,
@@ -53,6 +54,10 @@ const P = {
   miniCard: <><rect x="2" y="5" width="20" height="14" rx="2" /><circle cx="8" cy="11" r="2.2" /><path d="M5 16c.6-1.6 1.7-2.4 3-2.4s2.4.8 3 2.4" /><path d="M14 10h5M14 13h4" /></>,
   calendar: <><rect x="3" y="5" width="18" height="16" rx="2.5" /><path d="M3 10h18" /><path d="M8 3v4M16 3v4" /></>,
   discount: <><circle cx="8" cy="8" r="2.5" /><circle cx="16" cy="16" r="2.5" /><path d="M17 7 7 17" /></>,
+  connections: <><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18" /></>,
+  smiley: <><circle cx="12" cy="12" r="9" /><path d="M8.5 14.5c1.9 2 5.1 2 7 0" /><path d="M9 9.5h.01M15 9.5h.01" /></>,
+  connectMe: <><rect x="3" y="4" width="18" height="16" rx="3" /><path d="M7 10h9l-2.5-2.5" /><path d="M17 14H8l2.5 2.5" /></>,
+  megaphone: <><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1Z" /><path d="M15 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12" /></>,
   organizations: <><path d="M12 3 3 20h18L12 3Z" /><path d="M7.6 12h8.8M5.4 16h13.2" /></>,
   employment: <><rect x="3" y="8" width="18" height="12" rx="2" /><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /><path d="M3 13h18" /></>,
   notifications: <><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9Z" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></>,
@@ -84,7 +89,7 @@ export const LEGEND = [
   {
     group: "Sections",
     items: [
-      ["calendar", "One Big Calendar"], ["discount", "Discount / Gift Certificates"],
+      ["calendar", "One Big Calendar"], ["discount", "Discount / Gift Certificates"], ["connections", "Connections"],
       ["employment", "Employment Listings"], ["notifications", "Notifications"],
     ],
   },

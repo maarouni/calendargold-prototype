@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import PageTemplate from "../../../components/PageTemplate";
-import OrgSubNav from "../../../components/OrgSubNav";
 import { HostAvatar } from "../../../components/EventVisuals";
 import { fetchOrgs, readMembership, rosterVisible, ROSTER_GROUPS } from "../../../lib/organizations";
 
@@ -37,18 +36,18 @@ export default function OrgMembers() {
   }, [o, q, sort]);
 
   if (o === undefined) return <div className="tpl"><p>Loading…</p></div>;
-  if (o === null) return <div className="tpl"><div className="empty-state">Couldn&rsquo;t find that organization. <a href="/organizations">Back to Organizations</a></div></div>;
+  if (o === null) return <div className="tpl"><div className="empty-state">Couldn&rsquo;t find that organization. <a href="/connections">Back to Connections</a></div></div>;
 
   const visible = rosterVisible(o, status, loggedIn);
 
   return (
     <PageTemplate
-      section="organizations"
-      title="Organization Members"
+      section="connections"
+      title="Connections Members"
       subtitle={o.name}
       legend={false}
-      subnav={<OrgSubNav active="details" orgId={o.id} />}
-      actions={<a href={`/organizations/${o.id}`} className="tpl-action">← Organization Details</a>}
+      activeAction="details"
+      actions={<a href={`/connections/${o.id}`} className="tpl-action">← Connections Details</a>}
     >
       {!visible ? (
         <div className="empty-state">

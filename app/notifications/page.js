@@ -13,6 +13,7 @@ import {
 import { fetchEvents } from "../lib/events";
 import { Box, Option } from "../components/FilterKit";
 import { Glyph } from "../components/Icons";
+import SiteHero from "../components/SiteHero";
 
 const LABELS_KEY = "cg_notification_labels_v2";
 const SUBS_KEY = "cg_subscriptions_v1";
@@ -129,7 +130,7 @@ function BrowseTab({ edit, labels, update, subs, toggleSub }) {
           <em>Select all that apply</em>
           {!edit && (
             <button type="button" className="fp-clear-x" data-tip="Clear All" aria-label="Clear all filters" onClick={() => setSel(EMPTY_SEL)}>
-              <Glyph name="clearAll" size={18} />
+              <Glyph name="xMark" size={18} strokeWidth={3} />
             </button>
           )}
         </div>
@@ -650,6 +651,10 @@ export default function Notifications() {
 
   return (
     <div className="page nt-page">
+      <SiteHero section="notifications" title="Notifications" icon="notifications"
+        mode={tab === "business" ? "edit" : "output"}
+        activeAction={tab === "mine" ? "digest" : tab === "business" ? "edit" : "details"} />
+
       {edit && (
         <div className="hint">
           <b>Edit mode:</b> rename filters, cards, delivery choices and business section titles. Changes save
@@ -658,7 +663,7 @@ export default function Notifications() {
       )}
 
       <div className="nt-title-row">
-        <h2 style={{ margin: "6px 0 14px" }}>Notifications</h2>
+        <span />
         <div className="nt-edit-bar">
           {edit && (
             <>
