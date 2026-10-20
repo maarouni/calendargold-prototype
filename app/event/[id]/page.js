@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import QRCode from "qrcode";
-import { slugify, categoryIcon } from "../../lib/slug";
+import { slugify } from "../../lib/slug";
 import { googleCalendarUrl, eventCategories } from "../../lib/taxonomy";
 import { fetchEvents } from "../../lib/events";
 import { fmtWhen, dateFormatOf } from "../../components/EventVisuals";
 import { Glyph, IconButton } from "../../components/Icons";
 import SiteHero from "../../components/SiteHero";
+import { Poster } from "../../components/EventVisuals";
 
 const STORAGE_KEY = "mc_my_calendar_v1";
 
@@ -74,9 +75,11 @@ export default function EventDetail() {
   return (
     <div className="page event-detail">
       <SiteHero section="calendar" title="Event Details" icon="viewMode" activeAction="details" />
-      <div className={`event-cover cover-${slugify(event.category)}`}>
-        {event.premier && <span className="cover-premier">★ PREMIER EVENT</span>}
-        <span className="cover-icon">{categoryIcon(event.category)}</span>
+      {/* Oct 19: plain image box (the event's uploaded image, icon or logo
+          goes here) instead of the colored emoji banner. */}
+      <div className="event-cover-plain">
+        <Poster event={event} />
+        <span className="ecp-note">Icon, Image or Logo</span>
       </div>
 
       <div className="event-detail-grid">

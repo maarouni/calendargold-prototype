@@ -2816,3 +2816,6 @@ input.sel-radio { --sel-radius: 50%; border-radius: 50% !important; }
   .pv-pick .obc-row, .pv-pick .obc-row.premier { grid-template-columns: 100px minmax(0, 1fr); }
   .pv-pick .obc-img { display: none; }
 }
+.event-cover-plain { position: relative; height: 160px; margin: 8px 0 16px; }
+.event-cover-plain .poster-plain { min-height: 160px; border-radius: 12px; }
+.ecp-note { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); font-size: 12px; color: var(--cg-blue); }
